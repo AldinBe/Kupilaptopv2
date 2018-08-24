@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+    <title>Kupilaptop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+     <meta name="author" content="Aldin"> 
+    <link rel="icon" type="image/ico" href="images/icon.ico" />
+    
+
+     <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    
+        <!-- Bootstrap core CSS     -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
+
+    <!--     Fonts and icons     -->
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+
+    <!-- Controller -->
+    <script src="controllers/site-controller.js"></script>
+    <script src="controllers/registration-controller.js"></script>
+
+    <!--Popeye-->
+    <script src="assets/release/popeye.js"></script>
+    <link rel="stylesheet" href="assets/release/popeye.css" />
+
+    <!-- Toastr -->
+    <link rel="stylesheet" href="//unpkg.com/angular-toastr/dist/angular-toastr.css" />
+    <script src="//unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+    <script>
+        //Angular module
+        var app = angular.module("myApp", ["ngRoute", "toastr", "pathgather.popeye"]);
+        //Controllers
+        app.controller('siteController', SiteController);
+        app.controller('registrationController', RegistrationController);
+        //Routs
+        app.config(function ($routeProvider) {
+                $routeProvider
+                .when("/", {
+                    templateUrl : "views/home.html",
+                    controller : "siteController"
+                })
+                .when("/shop", {
+                    templateUrl : "views/shop.html"
+                })
+                .when("/login", {
+                    templateUrl : "views/login.html",
+                    controller : "siteController"
+
+                })
+                .when("/register", {
+                    templateUrl : "views/register.html",
+                    controller : "registrationController"
+                })
+                .when("/adminPanel", {
+                    templateUrl : "views/adminPanel.html"
+                })
+        });
+    </script>
+
+
+    <div ng-view></div>
+
+</body>
+
+</html>
+<!-- Core JS Files -->
+<script src="assets/js/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="assets/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
+<script src="assets/js/popper.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!-- Switches -->
+<script src="assets/js/bootstrap-switch.min.js"></script>
+
+<!--  Plugins for Slider -->
+<script src="assets/js/nouislider.js"></script>
+
+<!--  Plugins for DateTimePicker -->
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+
+<!--  Paper Kit Initialization and functons -->
+<script src="assets/js/paper-kit.js?v=2.1.0"></script>
