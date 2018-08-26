@@ -37,21 +37,21 @@
                     <span class="navbar-toggler-bar"></span>
                     <span class="navbar-toggler-bar"></span>
                 </button>
-                <a class="navbar-brand" href="https://www.creative-tim.com">Kupilaptop</a>
+                <a class="navbar-brand" href="/">Kupilaptop</a>
             </div>
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="shop.html" target="_blank" class="nav-link"><i class="nc-icon nc-cart-simple"></i> Laptopi</a>
+                        <a href="#!shop" target="_blank" class="nav-link"><i class="nc-icon nc-cart-simple"></i> Laptopi</a>
                     </li>
                     <li class="nav-item">
-                        <a href="documentation/tutorial-components.html" target="_blank" class="nav-link"><i class="nc-icon nc-pin-3"></i> Kontakt</a>
+                        <a href="#!contact" target="_blank" class="nav-link"><i class="nc-icon nc-pin-3"></i> Kontakt</a>
                     </li>
                     <li class="nav-item">
-                        <a href="documentation/tutorial-components.html" target="_blank" class="nav-link"><i class="nc-icon nc-simple-add"></i> Dodaj proizvod</a>
+                        <a href="#!adminPanel" target="_blank" class="nav-link"><i class="nc-icon nc-simple-add"></i> Dodaj proizvod</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;Prijava</a>
+                            <a class="nav-link" href="#!login"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;Prijava</a>
                     </li>
                 </ul>
             </div>
@@ -59,7 +59,6 @@
     </nav>
     </nav>
         <div class="main">
-
         </div>
         <div class="single">
         <section class="site-section" id="section-features">
@@ -69,13 +68,16 @@
                   <p><img src="assets/img/laptop_1.jpg" alt="" class="img-fluid"></p>
                 </div>
                 <div class="col-md-4">
-                  <h3 class="mb-3">{{laptop_info.laptop.ime}}</h3>
-                  <p>{{laptop_info.laptop.ime}}</p>
+                  <h3 class="mb-3">{{laptop_info.ime}}</h3>
+                  <p>{{laptop_info.ime}}</p>
       
                   <ul class="site-list">
-                    <li class="site-check">{{laptop_info.laptop.ime}}</li>
-                    <li class="site-check">{{laptop_info.laptop.graficka}}</li>
-                    <li class="site-check">{{laptop_info.laptop.procesor}}</li>
+                    <li class="site-check">{{laptop_info.ime}}</li>
+                    <h5>Price : {{laptop_info.cijena}} KM</h5> <br>
+                    <li class="site-check">{{laptop_info.procesor}}</li>
+                  </ul>
+                  <ul>
+                    <div class="row" style="padding-top:2%;"><a class="add_cart_btn" ng-href="#!/order/{{laptop_info.ime}}/{{laptop_info.cijena}}" >kupi</a></div>
                   </ul>
                 </div>
               </div>
@@ -87,14 +89,14 @@
             <div class="row">
                 <nav class="footer-nav">
                     <ul>
-                        <li><a href="http://www.creative-tim.com">Creative Tim</a></li>
-                        <li><a href="http://blog.creative-tim.com">Blog</a></li>
-                        <li><a href="http://www.creative-tim.com/license">Licenses</a></li>
+                        <li><a href="/">Kupilaptop</a></li>
+                        <li><a href="#!shop">Laptopi</a></li>
+                        <li><a href="#!contact">Kontakt</a></li>
                     </ul>
                 </nav>
                 <div class="credits ml-auto">
                     <span class="copyright">
-                        © <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+                        <i class="fa fa-heart heart"></i>
                     </span>
                 </div>
             </div>

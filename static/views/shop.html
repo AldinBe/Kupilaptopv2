@@ -37,21 +37,21 @@
                     <span class="navbar-toggler-bar"></span>
                     <span class="navbar-toggler-bar"></span>
                 </button>
-                <a class="navbar-brand" href="https://www.creative-tim.com">Kupilaptop</a>
+                <a class="navbar-brand" href="/">Kupilaptop</a>
             </div>
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="shop.html" target="_blank" class="nav-link"><i class="nc-icon nc-cart-simple"></i> Laptopi</a>
+                        <a href="#!shop" class="nav-link"><i class="nc-icon nc-cart-simple"></i> Laptopi</a>
                     </li>
                     <li class="nav-item">
-                        <a href="documentation/tutorial-components.html" target="_blank" class="nav-link"><i class="nc-icon nc-pin-3"></i> Kontakt</a>
+                        <a href="#!contact" class="nav-link"><i class="nc-icon nc-pin-3"></i> Kontakt</a>
                     </li>
                     <li class="nav-item">
-                        <a href="documentation/tutorial-components.html" target="_blank" class="nav-link"><i class="nc-icon nc-simple-add"></i> Dodaj proizvod</a>
+                        <a href="#!adminPanel" class="nav-link"><i class="nc-icon nc-simple-add"></i> Dodaj proizvod</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;Prijava</a>
+                            <a class="nav-link" href="#!login"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;Prijava</a>
                     </li>
                 </ul>
             </div>
@@ -68,32 +68,33 @@
                         <div class="col-lg-9 float-md-right">
                             <div class="showing_fillter">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                    <form>
-                                        <input type="text" placeholder="Pretraga" ng-model ="searchText.ime">
-                                        <input type="button" value="Search">
-                                    </form>
+                                    <div class="col-md-2">
+                                        <div class="secand_fillter">
+                                            <h6>Prikaz</h6>
+                                        </div>
                                     </div>
-                                    <div class="col-md-4">
-                                    <div class="secand_fillter">
-                                        <h4>Prikaz :</h4>
-                                        <input type="number" step="1" min="0" max="5" ng-model="rowLimit" />
+                                    <div class="col-md-2">
+                                            <div class="secand_fillter">
+                                            <input type="number" step="1" min="0" max="7" ng-model="rowLimit" />
+                                            </div>
                                     </div>
+                                    <div class="col-md-2">
+                                            <div class="third_fillter">
+                                                    <h6>Poredaj po:</h6>
+                                            </div>
                                     </div>
-                                    <div class="col-md-4">
-                                    <div class="third_fillter">
-                                        <h4>Poredaj po : </h4>
-                                        <select class="selectpicker" ng-model = "sortColumn" >
-                                            <option value = "cijena">Najniža prvo</option>
-                                            <option value = "-cijena">Najskuplja prvo</option>
-                                        </select>
-                                    </div>
-                                    </div>
-                                    
-                                </div>
+                                    <div class="col-md-2">
+                                            <div class="third_fillter">
 
+                                            <select class="selectpicker" ng-model = "sortColumn" >
+                                                    <option value = "cijena">Najniža prvo</option>
+                                                    <option value = "-cijena">Najskuplja prvo</option>
+                                                </select>
+                                            </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="c_product_grid_details"ng-repeat="laptop in laptopi | filter:searchText | limitTo:rowLimit | orderBy: sortColumn" >
+                            <div class="c_product_grid_details"ng-repeat="laptop in laptopi | filter:searchText | limitTo:rowLimit |  orderBy: sortColumn | filter:brendFilter | filter:ramFilter | filter:velicinaFilter" >
                                 <div class="c_product_item">
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6">
@@ -121,7 +122,7 @@
                                                         <h3><li><a>{{laptop.velicina}}"</a></li></h3>
                                                     </div>
                                                 </div>
-                                                <div class="row" style="padding-top:2%;"><a class="add_cart_btn" href="#!singleProduct">detaljno</a></div>
+                                                <div class="row" style="padding-top:2%;"><a class="add_cart_btn" ng-href="#!/singleProduct/{{laptop._id}}">detaljno</a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -143,26 +144,36 @@
                             <div class="categories_sidebar">
                                 <aside class="left_widgets p_filter_widgets">
                                     <div class="l_w_title">
-                                        <h3>Product Filters</h3>
+                                        <h3>Filteri</h3>
                                     </div>
+                                    <form>
+                                        <input type="text" placeholder="Pretraga" ng-model ="searchText.ime">
+                                        <input type="button" value="Pretraga">
+                                    </form>
                                     <div class="widgets_inner">
                                         <h4>Brand</h4>
                                         <ul class="list">
-                                            <li><input type="radio"> lose</li>
-                                            <li><input type="radio"> lose</li>
-                                            <li><input type="radio"> lose</li>
-                                            <li><input type="radio"> lose</li>
+                                            <li><input type="checkbox" ng-click="includeBrend('HP')">HP</li>
+                                            <li><input type="checkbox" ng-click="includeBrend('DELL')">DELL</li>
                                         </ul>
                                     </div>
                                     <div class="widgets_inner">
-                                            <h4>Brand</h4>
+                                            <h4>Ram</h4>
                                             <ul class="list">
-                                                <li><input type="radio"> lose</li>
-                                                <li><input type="radio"> lose</li>
-                                                <li><input type="radio"> lose</li>
-                                                <li><input type="radio"> lose</li>
+                                                <li><input type="checkbox" ng-click="includeRam('8')">8</li>
+                                                <li><input type="checkbox" ng-click="includeRam('16')">16</li>
                                             </ul>
                                         </div>
+                                        <div class="widgets_inner">
+                                                <h4>Grafička</h4>
+                                                <ul class="list">
+                                                    <li><input type="checkbox" ng-click="includeVelicina('15.6')">15.6"</li>
+                                                    <li><input type="checkbox" ng-click="includeVelicina('17.3')">17.3"</li>
+                                                    <li><input type="checkbox" ng-click="includeVelicina('17')">17"</li>
+                                                    <li><input type="checkbox" ng-click="includeVelicina('13.3')">13.3"</li>
+
+                                                </ul>
+                                            </div>
                                 </aside>
                             </div>
                         </div>
@@ -170,24 +181,24 @@
                 </div>
             </div>
         </section>
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <nav class="footer-nav">
-                    <ul>
-                        <li><a href="http://www.creative-tim.com">Creative Tim</a></li>
-                        <li><a href="http://blog.creative-tim.com">Blog</a></li>
-                        <li><a href="http://www.creative-tim.com/license">Licenses</a></li>
-                    </ul>
-                </nav>
-                <div class="credits ml-auto">
-                    <span class="copyright">
-                        © <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
-                    </span>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <nav class="footer-nav">
+                        <ul>
+                            <li><a href="/">Kupilaptop</a></li>
+                            <li><a href="#!shop">Laptopi</a></li>
+                            <li><a href="#!contact">Kontakt</a></li>
+                        </ul>
+                    </nav>
+                    <div class="credits ml-auto">
+                        <span class="copyright">
+                            <i class="fa fa-heart heart"></i>
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
 </body>
 
 <!-- Core JS Files -->

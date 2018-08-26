@@ -8,7 +8,7 @@ var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var mongojs = require('mongojs');
 var MongoId = require('mongodb').ObjectID;
-var db = mongojs(process.env.MONGOLAB_URI || 'localhost:27017/kupilaptopDB', ['laptopi', 'users']);
+var db = mongojs(process.env.MONGOLAB_URI || 'mongodb://kupilaptop:aldin123@ds125342.mlab.com:25342/kupilaptop_db', ['laptopi', 'users']);
 var port = process.env.PORT || 5000;
 
 
@@ -112,43 +112,30 @@ app.post('/login', function(req, res) {
 app.get('/admin/laptopi', function (req, res) {
   console.log('I received a GET request');
   db.laptopi.find(function (err, docs) {
-    console.log(docs);
     res.json(docs);
   });
 });
 app.get('/users/laptopi', function (req, res) {
   console.log('I received a GET request');
   db.laptopi.find(function (err, docs) {
-    console.log(docs);
     res.json(docs);
   });
 });
 
+
 app.post('/register', function(req, res, next) {
   req.body.type = "user";
   req.body._id = null;
+  req.body.password_confirm = null;
   var user = req.body;
-  var find = req.body.email;
-  console.log(find);
-      db.collection('users').find({
-        email : find
-      }).toArray(function (err,result){
-        if(err) throw err;
-
-        console.log(result);
-
-        if(result.length > 0){
-          res.sendStatus(204);
-        } else {
-          db.users.insert(user,function(err,data) {
-              if (err) return console.log(err);
-              res.setHeader('Content-Type', 'application/json');
-              res.send(user);
-          })
-        }
+  bcrypt.hash(user.password, 10, function(err, hash) {
+      user.password = hash;
+      db.collection('users').insert(user, function(err, data) {
+          if (err) return console.log(err);
+          res.setHeader('Content-Type', 'application/json');
+          res.send(user);
       })
-
-
+  })
 });
 
 app.post('/admin/addLaptop', function(req, res){
@@ -161,9 +148,21 @@ app.post('/admin/addLaptop', function(req, res){
     })
 });
 
+app.post('/admin/makeOrder/:ime/:cijena', function(req, res){
+  req.body._id = null;
+  req.body.laptop_ime = req.params.ime;
+  req.body.laptop_cijena = req.params.cijena;
+  var order = req.body;
+  console.log(order);
+  db.collection('orders').insert(order, function(err, data){
+      if(err) return console.log(err);
+      res.setHeader('Content-Type', 'application/json');
+      res.send(order);
+  })
+});
+
 app.delete('/admin/laptopi/:id', function (req, res) {
   var id = req.params.id;
-  console.log(id);
   db.laptopi.remove({_id: mongojs.ObjectId(id)}, function (err, doc) {
     res.json(doc);
   });
@@ -172,7 +171,6 @@ app.delete('/admin/laptopi/:id', function (req, res) {
 
 app.get('/admin/laptopi/:id', function (req, res) {
   var id = req.params.id;
-  console.log(id);
   db.laptopi.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
     res.json(doc);
   });
@@ -180,7 +178,6 @@ app.get('/admin/laptopi/:id', function (req, res) {
 
 app.put('/admin/laptopi/:id', function (req, res) {
   var id = req.params.id;
-  console.log(req.body.name);
   db.laptopi.findAndModify({
     query: {_id: mongojs.ObjectId(id)},
     update: {$set: {ime: req.body.ime,brend: req.body.brend,vrsta: req.body.vrsta,procesor: req.body.procesor,procesorGeneracija: req.body.procesorGeneracija,brzinaProcesora: req.body.brzinaProcesora,ram: req.body.ram,graficka: req.body.graficka,vrstaGraficke: req.body.vrstaGraficke,kapacitetGraficke: req.body.kapacitetGraficke,vrstaMemorije: req.body.vrstaMemorije,kapacitetMemorije: req.body.kapacitetMemorije,velicina: req.body.velicina,cijena: req.body.cijena}},
@@ -190,30 +187,28 @@ app.put('/admin/laptopi/:id', function (req, res) {
   );
 });
 
-app.get("/singleCar/:laptop_id", function(req, res) {
-  db.collection('laptopi').findOne({
-      _id: new MongoId(req.params.id)
-  }, function(err, doc) {
-      if (err) {
-          handleError(res, err.message, "There is an error in finding a car");
-      } else {
-          res.setHeader('Content-Type', 'application/json');
-          res.status(200).json(doc);
-      }
-  });
+app.get("/singleLaptop/:laptop_id", function(req, res) {
+    db.collection('laptopi').findOne({
+        _id: new MongoId(req.params.laptop_id)
+    }, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "There is an error in finding a car");
+        } else {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(doc);
+        }
+    });
 });
 
 app.get("/getSingle/:id", function(req, res){
-  db.collection('laptopi').find({
-      _id: new MongoId(req.params.id)
-  }).toArray((err, doc) => {
-      if(err) return console.log(err);
-      res.setHeader('Content-Type', 'application/json');
-      res.send(doc);
-  });
+    db.collection('laptopi').find({
+        _id: new MongoId(req.params.id)
+    }).toArray((err, doc) => {
+        if(err) return console.log(err);
+        res.setHeader('Content-Type', 'application/json');
+        res.send(doc);
+    });
 });
-
-
 
 app.listen(port, function(){
   console.log('Node app is running on port', port)

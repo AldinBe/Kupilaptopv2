@@ -1,4 +1,4 @@
-function laptopController($scope, $http, toastr){
+function laptopController($scope, $http, toastr, $routeParams){
   console.log("ADD LAPTOP");
   $scope.submit = true;
 
@@ -9,8 +9,16 @@ function laptopController($scope, $http, toastr){
     }
  };
 
+ get_params();
+
+function get_params(){
+  $scope.laptop_name = $routeParams.laptop_name;
+  $scope.laptop_cijena = $routeParams.cijena;
+}
+
  console.log(localStorage.getItem('user'))
  console.log(localStorage.getItem('type'))
+
  //Get Laptop
   var refresh_laptop = function () {
       $http.get('/users/laptopi', config).then(function (response) {
@@ -18,6 +26,14 @@ function laptopController($scope, $http, toastr){
       })
     }
     refresh_laptop()
+
+    $scope.make_order = function() {
+      $http.post('/admin/makeOrder/'+$scope.laptop_name+'/'+$scope.laptop_cijena, $scope.order, config).then(function(data) {
+          $scope.order = null;
+          $scope.orders.push(data);
+          toastr.success('Narudzba napravljena.');
+      });
+    }
   
   //Create Laptop
   $scope.add_laptop = function() {
@@ -85,4 +101,62 @@ function laptopController($scope, $http, toastr){
   //Filteri
   $scope.rowLimit = 3;
   $scope.sortColumn = "cijena";
+
+  $scope.brendIncludes = [];
+
+  $scope.includeBrend = function(brend) {
+    var i = $.inArray(brend, $scope.brendIncludes);
+    if (i > -1) {
+        $scope.brendIncludes.splice(i, 1);
+    } else {
+        $scope.brendIncludes.push(brend);
+    }
+}
+
+  $scope.brendFilter = function(laptopi) {
+    if ($scope.brendIncludes.length > 0) {
+        if ($.inArray(laptopi.brend, $scope.brendIncludes) < 0)
+            return;
+    }
+    
+    return laptopi;
+}
+$scope.ramIncludes = [];
+
+$scope.includeRam = function(ram) {
+  var i = $.inArray(ram, $scope.ramIncludes);
+  if (i > -1) {
+      $scope.ramIncludes.splice(i, 1);
+  } else {
+      $scope.ramIncludes.push(ram);
+  }
+}
+
+$scope.ramFilter = function(laptopi) {
+  if ($scope.ramIncludes.length > 0) {
+      if ($.inArray(laptopi.ram, $scope.ramIncludes) < 0)
+          return;
+  }
+  
+  return laptopi;
+}
+$scope.velicinaIncludes = [];
+
+$scope.includeVelicina = function(velicina) {
+  var i = $.inArray(velicina, $scope.velicinaIncludes);
+  if (i > -1) {
+      $scope.velicinaIncludes.splice(i, 1);
+  } else {
+      $scope.velicinaIncludes.push(velicina);
+  }
+}
+
+$scope.velicinaFilter = function(laptopi) {
+  if ($scope.velicinaIncludes.length > 0) {
+      if ($.inArray(laptopi.velicina, $scope.velicinaIncludes) < 0)
+          return;
+  }
+  
+  return laptopi;
+}
 }

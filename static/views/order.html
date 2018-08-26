@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Paper Kit 2 by Creative Tim</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Bootstrap core CSS     -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
+
+    <!--     Fonts and icons     -->
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+
+</head>
+
+<body>  
+    <nav class="navbar navbar-expand-md fixed-top">
+        <div class="container">
+            <div class="navbar-translate">
+                <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar"></span>
+                    <span class="navbar-toggler-bar"></span>
+                    <span class="navbar-toggler-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://www.creative-tim.com">Kupilaptop</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#!shop" class="nav-link"><i class="nc-icon nc-cart-simple"></i> Laptopi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documentation/tutorial-components.html" target="_blank" class="nav-link"><i class="nc-icon nc-pin-3"></i> Kontakt</a>
+                    </li>
+                    <li class="nav-item" ng-if="check_admin()">
+                        <a href="#!adminPanel" class="nav-link"><i class="nc-icon nc-simple-add"></i> Dodaj proizvod</a>
+                    </li>
+                    <li class="nav-item" >
+                            <a class="nav-link" href="#!login"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;Prijava</a>
+                    </li>
+                    <li class="nav-item" ng-if="check_login()">
+                            <a class="nav-link"  ng-click="logout()"  href="#!login"><i class="nc-icon nc-single-02" aria-hidden="true" ></i>&nbsp;Odjava</a>
+                    </li>
+                </ul>
+            </div>
+    </nav>    
+        <div class="main" style="margin-top:100px;">
+        
+        </div>
+
+        <div class="checkout_area section-padding-80">
+            <div class="container">
+                <div class="row">
+    
+                    <div class="col-12 col-md-6">
+                        <div class="checkout_details_area mt-50 clearfix">
+    
+                            <div class="cart-page-heading mb-30">
+                                <h5>Unesite podatke</h5>
+                            </div>
+    
+                            <form action="#" method="post">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="first_name">Ime <span>*</span></label>
+                                        <input type="text" ng-model="order.ime" class="form-control" id="first_name" value="" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="last_name">Prezime <span>*</span></label>
+                                        <input type="text" ng-model="order.prezime" class="form-control" id="last_name" value="" required>
+                                    </div>
+                                   
+                                    <div class="col-12 mb-3">
+                                        <label for="country">Država <span>*</span></label>
+                                        <select class="w-100" ng-model="order.drzava" id="country">
+                                            <option value="bih">Bosna i Hercgovina</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="street_address">Adresa <span>*</span></label>
+                                        <input type="text" ng-model="order.adresa" class="form-control mb-3" id="street_address" value="">
+                                        <input type="text" ng-model="order.adresa2" class="form-control" id="street_address2" value="">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="postcode">Poštanski broj <span>*</span></label>
+                                        <input type="text" ng-model="order.posta" class="form-control" id="postcode" value="">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="city">Grad <span>*</span></label>
+                                        <input type="text" ng-model="order.grad" class="form-control" id="city" value="">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="state">Kanton <span>*</span></label>
+                                        <input type="text" ng-model="order.kanton" class="form-control" id="state" value="">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="phone_number">Broj telefona <span>*</span></label>
+                                        <input type="number" ng-model="order.broj" class="form-control" id="phone_number" min="0" value="">
+                                    </div>
+                                    <div class="col-12 mb-4">
+                                        <label for="email_address">Email Adresa <span>*</span></label>
+                                        <input type="email" ng-model="order.email" class="form-control" id="email_address" value="">
+                                    </div>
+    
+                                   
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+    
+                    <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+                        <div class="order-details-confirmation">
+    
+                            <div class="cart-page-heading">
+                                <h5>Vaša Narudžba</h5>
+                                <p>Detalji</p>
+                            </div>
+    
+                            <ul class="order-details-form mb-4">
+                                <li> {{laptop_name}}</li>
+                                <li>{{laptop_cijena }}</li>
+
+                            </ul>
+    
+                            <div id="accordion" role="tablist" class="mb-4">
+                                <div class="">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <h6 class="mb-0">
+                                           <input type="radio" name = "nesto" value="procesor"><label for="huey">PAYPAL</label>
+                                        </h6>
+                                    </div>
+    
+                                    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="card-header" role="tab" id="headingTwo">
+                                        <h6 class="mb-0">
+                                               <input type="radio" name = "nesto" value="procesor"><label for="huey">PLAĆANJE PO POUZEĆU</label>
+                                           </h6>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="card-header" role="tab" id="headingThree">
+                                        <h6 class="mb-0">
+                                               <input type="radio" name = "nesto" value="procesor"><label for="huey">KREDITNA KARTICA</label>
+                                           </h6>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="card-header" role="tab" id="headingFour">
+                                        <h6 class="mb-0">
+                                               <input type="radio" name = "nesto" value="procesor"><label for="huey">TRANSFER PREKO BANKE</label>
+                                           </h6>
+                                    </div>
+                                    <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p>Za dodatne informacije kontaktirajte nas.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <a ng-click="make_order()" class="btn essence-btn">Završi Narudžbu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <nav class="footer-nav">
+                        <ul>
+                            <li><a href="/">Kupilaptop</a></li>
+                            <li><a href="#!shop">Laptopi</a></li>
+                            <li><a href="#!contact">Kontakt</a></li>
+                        </ul>
+                    </nav>
+                    <div class="credits ml-auto">
+                        <span class="copyright">
+                            <i class="fa fa-heart heart"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+</body>
+
+<!-- Core JS Files -->
+<script src="assets/js/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="assets/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
+<script src="assets/js/popper.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!-- Switches -->
+<script src="assets/js/bootstrap-switch.min.js"></script>
+
+<!--  Plugins for Slider -->
+<script src="assets/js/nouislider.js"></script>
+
+<!--  Plugins for DateTimePicker -->
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+
+<!--  Paper Kit Initialization and functons -->
+<script src="assets/js/paper-kit.js?v=2.1.0"></script>
+
+</html>

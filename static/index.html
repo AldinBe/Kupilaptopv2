@@ -47,7 +47,7 @@
         app.controller('siteController', SiteController);
         app.controller('registrationController', RegistrationController);
         app.controller("laptopController", laptopController);
-        app.controller('singlecarController', SingleCarController);
+        app.controller('singlelaptopController', SingleLaptopController);
         //Routs
         app.config(function ($routeProvider) {
                 $routeProvider
@@ -73,11 +73,16 @@
                     controller : "laptopController"
 
                 })
-                .when("/singleProduct", {
+                .when("/singleProduct/:laptop", {
                     templateUrl : "views/singleProduct.html",
-                    controller : "siteController"
+                    controller : "singlelaptopController"
 
                 })
+                .when("/order/:laptop_name/:cijena", {
+                    templateUrl : "views/order.html",
+                    controller : "laptopController"
+                })
+
         });
     </script>
 
