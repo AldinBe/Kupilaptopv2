@@ -4,12 +4,12 @@ const app = express();
 const jwt_secret = 'WU5CjF8fHxG40S2t7oyk';
 const jwt_admin = 'SJwt25Wq62SFfjiw92sR';
 
+var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var mongojs = require('mongojs');
 var MongoId = require('mongodb').ObjectID;
 var db = mongojs(process.env.MONGOLAB_URI || 'localhost:27017/kupilaptopDB', ['laptopi', 'users']);
 var port = process.env.PORT || 5000;
-var bcrypt = require('bcrypt');
 
 
 
@@ -21,24 +21,24 @@ app.use(express.urlencoded({
 })); // to support URL-encoded bodies
 
 
-app.use('/user/', function (request, response, next) {
-  jwt.verify(request.get('JWT'), jwt_secret, function (error, decoded) {
+app.use('/user/',function(request,response,next){
+  jwt.verify(request.get('JWT'), jwt_secret, function(error, decoded) {      
     if (error) {
-      response.status(401).send('Unauthorized access');
+      response.status(401).send('Unauthorized access');    
     } else {
-      db.collection("users").findOne({ '_id': new MongoId(decoded._id) }, function (error, user) {
-        if (error) {
+      db.collection("users").findOne({'_id': new  mongojs.ObjectId(decoded._id)}, function(error, user) {
+        if (error){
           throw error;
-        } else {
-          if (user) {
+        }else{
+          if(user){
             next();
-          } else {
+          }else{
             response.status(401).send('Credentials are wrong.');
           }
         }
       });
     }
-  });
+  });  
 })
 
 app.use('/admin/',function(request,response,next){
@@ -108,6 +108,7 @@ app.post('/login', function(req, res) {
   });
 });
 
+
 app.get('/admin/laptopi', function (req, res) {
   console.log('I received a GET request');
   db.laptopi.find(function (err, docs) {
@@ -150,15 +151,14 @@ app.post('/register', function(req, res, next) {
 
 });
 
-
-app.post('/admin/laptopi', function(req, res) {
-  req.body._id = null;
-  var laptop = req.body;
-  db.collection('laptopi').insert(laptop, function(err, data) {
-      if (err) return console.log(err);
-      res.setHeader('Content-Type', 'application/json');
-      res.send(laptop);
-  })
+app.post('/admin/addLaptop', function(req, res){
+    req.body._id = null;
+    var laptop = req.body;
+    db.collection('laptopi').insert(laptop, function(err, data){
+        if(err) return console.log(err);
+        res.setHeader('Content-Type', 'application/json');
+        res.send(laptop);
+    })
 });
 
 app.delete('/admin/laptopi/:id', function (req, res) {
@@ -189,6 +189,31 @@ app.put('/admin/laptopi/:id', function (req, res) {
     }
   );
 });
+
+app.get("/singleCar/:laptop_id", function(req, res) {
+  db.collection('laptopi').findOne({
+      _id: new MongoId(req.params.id)
+  }, function(err, doc) {
+      if (err) {
+          handleError(res, err.message, "There is an error in finding a car");
+      } else {
+          res.setHeader('Content-Type', 'application/json');
+          res.status(200).json(doc);
+      }
+  });
+});
+
+app.get("/getSingle/:id", function(req, res){
+  db.collection('laptopi').find({
+      _id: new MongoId(req.params.id)
+  }).toArray((err, doc) => {
+      if(err) return console.log(err);
+      res.setHeader('Content-Type', 'application/json');
+      res.send(doc);
+  });
+});
+
+
 
 app.listen(port, function(){
   console.log('Node app is running on port', port)

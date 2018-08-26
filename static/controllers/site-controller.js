@@ -35,9 +35,16 @@ function SiteController($scope, $http, toastr, $location){
         }
     }
 
+    $scope.getSingle = function(id){
+        $http.get('/getSingle/' + id).then(function(res) {
+            $scope.laptop_info = res.data[0];
+            console.log($scope.laptop_info);
+        })
+    };
+
     $scope.logout = function(){
         localStorage.clear();
-        toastr.info("Successfully logged out!", "Logged Out!");
+        toastr.info("Uspješno ste se odjavili");
     }
     
     $scope.openModal = function () {

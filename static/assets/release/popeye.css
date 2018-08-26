@@ -20,7 +20,7 @@ body.popeye-modal-open {
   top: 0;
   z-index: 5;
   overflow-y: auto;
-  background-color: rgba(255, 255, 255, 0.87);
+  background-color: rgba(76, 147, 234, 0.7);
   text-align: center;
   /* "ghost" element to use for vertical alignment
     (see https://css-tricks.com/centering-in-the-unknown/) */ }
@@ -46,13 +46,13 @@ body.popeye-modal-open {
     text-align: left;
     vertical-align: middle;
     display: inline-block;
-    width: 39%;
+    width: 60%;
     border-radius: 3px;
     border: none;
     z-index: 6;
     padding: 2em 1.5em 1.5em 1.5em;
-    background: black;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.383); }
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }
     .popeye-modal-container .popeye-modal a.popeye-close-modal {
       position: absolute;
       top: 1em;
@@ -61,10 +61,7 @@ body.popeye-modal-open {
       text-decoration: none;
       color: inherit; }
       .popeye-modal-container .popeye-modal a.popeye-close-modal::after {
-        content: "\d7";
-        color :red;
-         
-      }
+        content: "\d7"; }
 
 @-webkit-keyframes popeye-slide-up {
   0% {

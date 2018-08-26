@@ -25,6 +25,9 @@
     <!-- Controller -->
     <script src="controllers/site-controller.js"></script>
     <script src="controllers/registration-controller.js"></script>
+    <script src="controllers/laptopController.js"></script>
+    <script src="controllers/singlelaptop-controller.js"></script>
+
 
     <!--Popeye-->
     <script src="assets/release/popeye.js"></script>
@@ -43,6 +46,8 @@
         //Controllers
         app.controller('siteController', SiteController);
         app.controller('registrationController', RegistrationController);
+        app.controller("laptopController", laptopController);
+        app.controller('singlecarController', SingleCarController);
         //Routs
         app.config(function ($routeProvider) {
                 $routeProvider
@@ -51,7 +56,8 @@
                     controller : "siteController"
                 })
                 .when("/shop", {
-                    templateUrl : "views/shop.html"
+                    templateUrl : "views/shop.html",
+                    controller : "laptopController"
                 })
                 .when("/login", {
                     templateUrl : "views/login.html",
@@ -63,7 +69,14 @@
                     controller : "registrationController"
                 })
                 .when("/adminPanel", {
-                    templateUrl : "views/adminPanel.html"
+                    templateUrl : "views/adminPanel.html",
+                    controller : "laptopController"
+
+                })
+                .when("/singleProduct", {
+                    templateUrl : "views/singleProduct.html",
+                    controller : "siteController"
+
                 })
         });
     </script>

@@ -42,11 +42,14 @@
                     <li class="nav-item">
                         <a href="documentation/tutorial-components.html" target="_blank" class="nav-link"><i class="nc-icon nc-pin-3"></i> Kontakt</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" ng-if="check_admin()">
                         <a href="#!adminPanel" class="nav-link"><i class="nc-icon nc-simple-add"></i> Dodaj proizvod</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" >
                             <a class="nav-link" href="#!login"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;Prijava</a>
+                    </li>
+                    <li class="nav-item" ng-if="check_login()">
+                            <a class="nav-link"  ng-click="logout()"  href="#!login"><i class="nc-icon nc-single-02" aria-hidden="true" ></i>&nbsp;Odjava</a>
                     </li>
                 </ul>
             </div>
