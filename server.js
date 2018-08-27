@@ -4,7 +4,7 @@ const app = express();
 const jwt_secret = 'WU5CjF8fHxG40S2t7oyk';
 const jwt_admin = 'SJwt25Wq62SFfjiw92sR';
 
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 var mongojs = require('mongojs');
 var MongoId = require('mongodb').ObjectID;
