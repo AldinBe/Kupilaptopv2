@@ -20,12 +20,13 @@ function SiteController($scope, $http, toastr, $location){
             if(typeof response.data.token != 'undefined'){
                 localStorage.setItem('user',response.data.token)
                 localStorage.setItem('type', response.data.type)
-                toastr.success('Uspješna Prijava');
+                toastr.success('Uspješno ste ste prijavili!');
                 if(localStorage.getItem('type') == "user" ){
                     $location.url('/');
                 } else if(localStorage.getItem('type') == "admin"){
                     $location.url('/adminPanel');
                 }
+
             }
             else if(response.data.user == false){
                 toastr.error('Login Error');
@@ -48,6 +49,7 @@ function SiteController($scope, $http, toastr, $location){
         $scope.visible = true;
         $scope.visible = $scope.visible = false;
       }
+      //Single Laptop
           $scope.getSingle = function(id){
         $http.get('/getSingle/' + id).then(function(res) {
             $scope.laptop_info = res.data[0];

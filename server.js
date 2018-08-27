@@ -20,7 +20,7 @@ app.use(express.urlencoded({
     extended: true
 })); // to support URL-encoded bodies
 
-
+//User Login 
 app.use('/user/',function(request,response,next){
   jwt.verify(request.get('JWT'), jwt_secret, function(error, decoded) {      
     if (error) {
@@ -40,7 +40,7 @@ app.use('/user/',function(request,response,next){
     }
   });  
 })
-
+//Admin Login
 app.use('/admin/',function(request,response,next){
   jwt.verify(request.get('JWT'), jwt_admin, function(error, decoded) {     
     if (error) {
@@ -61,7 +61,7 @@ app.use('/admin/',function(request,response,next){
     }
   });  
 })
-
+//Login users
 app.post('/login', function(req, res) {
   var user = req.body;
   db.collection('users').findOne({
@@ -108,39 +108,29 @@ app.post('/login', function(req, res) {
   });
 });
 
-
-app.get('/admin/laptopi', function (req, res) {
-  console.log('I received a GET request');
-  db.laptopi.find(function (err, docs) {
-    res.json(docs);
-  });
-});
-
+//User get for laptops
 app.get('/users/laptopi', function (req, res) {
   console.log('I received a GET request');
   db.laptopi.find(function (err, docs) {
     res.json(docs);
   });
 });
-
-app.get('/users/orders', function (req, res) {
+//Admin get for orders
+app.get('/admin/orders', function (req, res) {
   console.log('I received a GET request');
   db.orders.find(function (err, docs) {
     res.json(docs);
   });
 });
-
-app.get('/users/contacts', function (req, res) {
+//Admin get for contacts
+app.get('/admin/contacts', function (req, res) {
   console.log('I received a GET request');
   db.contacts.find(function (err, docs) {
     res.json(docs);
   });
 });
 
-
-
-
-
+//Register Post
 app.post('/register', function(req, res, next) {
   req.body.type = "user";
   req.body._id = null;
@@ -155,7 +145,7 @@ app.post('/register', function(req, res, next) {
       })
   })
 });
-
+//Add laptop /admin
 app.post('/admin/addLaptop', function(req, res){
     req.body._id = null;
     var laptop = req.body;
@@ -165,6 +155,7 @@ app.post('/admin/addLaptop', function(req, res){
         res.send(laptop);
     })
 });
+//User post for contact 
 app.post('/users/addContact', function(req, res){
   req.body._id = null;
   var contact = req.body;
@@ -174,9 +165,7 @@ app.post('/users/addContact', function(req, res){
       res.send(contact);
   })
 });
-
-
-
+//User make order 
 app.post('/users/makeOrder/:ime/:cijena', function(req, res){
   req.body._id = null;
   req.body.laptop_ime = req.params.ime;
@@ -189,22 +178,21 @@ app.post('/users/makeOrder/:ime/:cijena', function(req, res){
       res.send(order);
   })
 });
-
+//Admin delete
 app.delete('/admin/laptopi/:id', function (req, res) {
   var id = req.params.id;
   db.laptopi.remove({_id: mongojs.ObjectId(id)}, function (err, doc) {
     res.json(doc);
   });
 });
-
-
+//Admin get single laptop id for update
 app.get('/admin/laptopi/:id', function (req, res) {
   var id = req.params.id;
   db.laptopi.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
     res.json(doc);
   });
 });
-
+//Admin post single laptop changes
 app.put('/admin/laptopi/:id', function (req, res) {
   var id = req.params.id;
   db.laptopi.findAndModify({
@@ -215,7 +203,7 @@ app.put('/admin/laptopi/:id', function (req, res) {
     }
   );
 });
-
+//Get single laptop
 app.get("/singleLaptop/:laptop_id", function(req, res) {
     db.collection('laptopi').findOne({
         _id: new MongoId(req.params.laptop_id)
@@ -228,7 +216,7 @@ app.get("/singleLaptop/:laptop_id", function(req, res) {
         }
     });
 });
-
+//Get single Laptop
 app.get("/getSingle/:id", function(req, res){
     db.collection('laptopi').find({
         _id: new MongoId(req.params.id)
@@ -238,7 +226,7 @@ app.get("/getSingle/:id", function(req, res){
         res.send(doc);
     });
 });
-
+//Port func
 app.listen(port, function(){
   console.log('Node app is running on port', port)
 })

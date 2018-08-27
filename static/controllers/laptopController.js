@@ -26,12 +26,12 @@ function get_params(){
       })
     }
     var refresh_orders = function () {
-      $http.get('/users/orders', config).then(function (response) {
+      $http.get('/admin/orders', config).then(function (response) {
         $scope.orders = response.data
       })
     }
     var refresh_contact = function () {
-      $http.get('/users/contacts', config).then(function (response) {
+      $http.get('/admin/contacts', config).then(function (response) {
         $scope.contacts = response.data
       })
     }
@@ -47,6 +47,7 @@ function get_params(){
           $scope.orders.push(data);
       });
     }
+  //User add msg
   $scope.add_contact = function() {
     $http.post('/users/addContact', $scope.contact, config).then(function(data) {
         $scope.contact = null;

@@ -1,6 +1,6 @@
 function RegistrationController($scope, $http, toastr, $location){
     console.log("Hello from Registration Controller");
-    
+    //Registration add
     $scope.add_user = function(){
         $http.post('/register', $scope.user).then(function(data){
           if(data.status == 204){
