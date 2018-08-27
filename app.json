@@ -1,7 +1,0 @@
-{
-    "name": "Kupilaptop",
-    "description": "Site for buying/selling laptops",
-    "repository": "https://github.com/AldinBe/Kupilaptopv2.git",
-    "logo" : "http://node-js-sample.herokuapp.com/node.svg",
-    "keywords": ["node", "express", "heroku"]
-  }
