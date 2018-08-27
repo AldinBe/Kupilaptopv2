@@ -1,4 +1,4 @@
-function RegistrationController($scope, $http, toastr, $location, $routeParams){
+function RegistrationController($scope, $http, toastr, $location){
     console.log("Hello from Registration Controller");
     
     $scope.add_user = function(){

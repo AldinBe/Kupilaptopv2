@@ -42,13 +42,13 @@
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="#!shop" target="_blank" class="nav-link"><i class="nc-icon nc-cart-simple"></i> Laptopi</a>
+                        <a href="#!shop" class="nav-link"><i class="nc-icon nc-cart-simple"></i> Laptopi</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#!contact" target="_blank" class="nav-link"><i class="nc-icon nc-pin-3"></i> Kontakt</a>
+                        <a href="#!contact" class="nav-link"><i class="nc-icon nc-pin-3"></i> Kontakt</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#!adminPanel" target="_blank" class="nav-link"><i class="nc-icon nc-simple-add"></i> Dodaj proizvod</a>
+                        <a href="#!adminPanel" class="nav-link"><i class="nc-icon nc-simple-add"></i> Dodaj proizvod</a>
                     </li>
                     <li class="nav-item">
                             <a class="nav-link" href="#!login"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;Prijava</a>
@@ -68,16 +68,58 @@
                   <p><img src="assets/img/laptop_1.jpg" alt="" class="img-fluid"></p>
                 </div>
                 <div class="col-md-4">
-                  <h3 class="mb-3">{{laptop_info.ime}}</h3>
-                  <p>{{laptop_info.ime}}</p>
-      
-                  <ul class="site-list">
-                    <li class="site-check">{{laptop_info.ime}}</li>
-                    <h5>Price : {{laptop_info.cijena}} KM</h5> <br>
-                    <li class="site-check">{{laptop_info.procesor}}</li>
+                  <h3 class="mb-3">{{laptop_info.ime}}</h3> 
+                  <ul clsass="site-list">
+                      <div class="row">
+                          <div class="col-md-6">
+                            <h5>Brend : {{laptop_info.brend}} </h5> <br>
+                          </div>
+                          <div class="col-md-6">
+                              <h5>Veličina : {{laptop_info.velicina}} </h5> <br>
+                            </div>
+                      </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Procesor : {{laptop_info.procesor}}- {{laptop_info.procesorVrsta}} Brzina: {{laptop_info.brzinaProcesora}}</h5> <br>
+                    </div>
+                </div>
+
+                <div class="row">
+                        <div class="col-md-4">
+                          <h5>Ram : {{laptop_info.ram}} </h5> <br>
+                        </div>
+                        <div class="col-md-8">
+                            <h5>Vrsta : {{laptop_info.ramVrsta}} </h5> <br>
+                          </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-7">
+                              <h5>Grafička : {{laptop_info.graficka}} </h5> <br>
+                            </div>
+                            <div class="col-md-5">
+                                <h5>Veličina : {{laptop_info.kapacitetGraficke}} GB</h5> <br>
+                              </div>
+                        </div>
+
+                        <div class="row">
+                                <div class="col-md-3"></div>
+                                    <div class="col-md-6">
+                                            <h5 style="color:red; padding-left: 25px;">Cijena : {{laptop_info.cijena}} KM</h5> <br>
+                                    </div>
+                                   
+                                </div>
+
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                                <div class="col-md-6">
+                                        <div class="row" style="padding-top:2%;"><a class="add_cart_btn" style=" width: 150px; text-align: center" ng-href="#!/order/{{laptop_info.ime}}/{{laptop_info.cijena}}" >kupi</a></div>
+                                </div>
+                               
+                            </div>
+                    
+
                   </ul>
                   <ul>
-                    <div class="row" style="padding-top:2%;"><a class="add_cart_btn" ng-href="#!/order/{{laptop_info.ime}}/{{laptop_info.cijena}}" >kupi</a></div>
                   </ul>
                 </div>
               </div>

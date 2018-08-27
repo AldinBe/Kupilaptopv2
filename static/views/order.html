@@ -32,7 +32,7 @@
                     <span class="navbar-toggler-bar"></span>
                     <span class="navbar-toggler-bar"></span>
                 </button>
-                <a class="navbar-brand" href="https://www.creative-tim.com">Kupilaptop</a>
+                <a class="navbar-brand" href="/">Kupilaptop</a>
             </div>
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav ml-auto">
@@ -40,7 +40,7 @@
                         <a href="#!shop" class="nav-link"><i class="nc-icon nc-cart-simple"></i> Laptopi</a>
                     </li>
                     <li class="nav-item">
-                        <a href="documentation/tutorial-components.html" target="_blank" class="nav-link"><i class="nc-icon nc-pin-3"></i> Kontakt</a>
+                        <a href="#!contact" target="_blank" class="nav-link"><i class="nc-icon nc-pin-3"></i> Kontakt</a>
                     </li>
                     <li class="nav-item" ng-if="check_admin()">
                         <a href="#!adminPanel" class="nav-link"><i class="nc-icon nc-simple-add"></i> Dodaj proizvod</a>
@@ -178,13 +178,19 @@
                                     </div>
                                     <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>Za dodatne informacije kontaktirajte nas.</p>
+                                            <p>Za dodatne informacije <a href="#!contact"> kontaktirajte nas.</a></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-    
-                            <a ng-click="make_order()" class="btn essence-btn">Završi Narudžbu</a>
+                            <div class="row">
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-10">
+                                        <a ng-click="make_order()" class="btn btn-outline-danger">Završi Narudžbu</a>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -198,7 +204,6 @@
                         <ul>
                             <li><a href="/">Kupilaptop</a></li>
                             <li><a href="#!shop">Laptopi</a></li>
-                            <li><a href="#!contact">Kontakt</a></li>
                         </ul>
                     </nav>
                     <div class="credits ml-auto">

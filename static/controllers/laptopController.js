@@ -1,4 +1,4 @@
-function laptopController($scope, $http, toastr, $routeParams){
+function laptopController($scope, $http, toastr, $routeParams, $location){
   console.log("ADD LAPTOP");
   $scope.submit = true;
 
@@ -25,22 +25,41 @@ function get_params(){
         $scope.laptopi = response.data
       })
     }
+    var refresh_orders = function () {
+      $http.get('/users/orders', config).then(function (response) {
+        $scope.orders = response.data
+      })
+    }
+    var refresh_contact = function () {
+      $http.get('/users/contacts', config).then(function (response) {
+        $scope.contacts = response.data
+      })
+    }
+    refresh_contact()
+    refresh_orders()
     refresh_laptop()
 
     $scope.make_order = function() {
-      $http.post('/admin/makeOrder/'+$scope.laptop_name+'/'+$scope.laptop_cijena, $scope.order, config).then(function(data) {
+      $http.post('/users/makeOrder/'+$scope.laptop_name+'/'+$scope.laptop_cijena, $scope.order, config).then(function(data) {
           $scope.order = null;
+          toastr.success("Uspješna Narudžba!");
+          $location.url('/');
           $scope.orders.push(data);
-          toastr.success('Narudzba napravljena.');
       });
     }
-  
+  $scope.add_contact = function() {
+    $http.post('/users/addContact', $scope.contact, config).then(function(data) {
+        $scope.contact = null;
+        //toastr.success("You are successfully registered! Please Login!", "Registration Successfull!");
+        //$location.url('/login');
+        $scope.contact.push(data);
+        toastr.success('Proizvod uspješno dodan!');
+    });
+}
   //Create Laptop
   $scope.add_laptop = function() {
     $http.post('/admin/addLaptop', $scope.laptop, config).then(function(data) {
         $scope.laptop = null;
-        //toastr.success("You are successfully registered! Please Login!", "Registration Successfull!");
-        //$location.url('/login');
         $scope.laptopi.push(data);
         toastr.success('Proizvod uspješno dodan!');
         refresh_laptop();

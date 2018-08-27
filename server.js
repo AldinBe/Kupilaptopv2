@@ -8,7 +8,7 @@ var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var mongojs = require('mongojs');
 var MongoId = require('mongodb').ObjectID;
-var db = mongojs(process.env.MONGOLAB_URI || 'mongodb://kupilaptop:aldin123@ds125342.mlab.com:25342/kupilaptop_db', ['laptopi', 'users']);
+var db = mongojs(process.env.MONGOLAB_URI || 'mongodb://kupilaptop:aldin123@ds125342.mlab.com:25342/kupilaptop_db', ['laptopi', 'orders','users','contacts']);
 var port = process.env.PORT || 5000;
 
 
@@ -115,12 +115,30 @@ app.get('/admin/laptopi', function (req, res) {
     res.json(docs);
   });
 });
+
 app.get('/users/laptopi', function (req, res) {
   console.log('I received a GET request');
   db.laptopi.find(function (err, docs) {
     res.json(docs);
   });
 });
+
+app.get('/users/orders', function (req, res) {
+  console.log('I received a GET request');
+  db.orders.find(function (err, docs) {
+    res.json(docs);
+  });
+});
+
+app.get('/users/contacts', function (req, res) {
+  console.log('I received a GET request');
+  db.contacts.find(function (err, docs) {
+    res.json(docs);
+  });
+});
+
+
+
 
 
 app.post('/register', function(req, res, next) {
@@ -147,8 +165,19 @@ app.post('/admin/addLaptop', function(req, res){
         res.send(laptop);
     })
 });
+app.post('/users/addContact', function(req, res){
+  req.body._id = null;
+  var contact = req.body;
+  db.collection('contacts').insert(contact, function(err, data){
+      if(err) return console.log(err);
+      res.setHeader('Content-Type', 'application/json');
+      res.send(contact);
+  })
+});
 
-app.post('/admin/makeOrder/:ime/:cijena', function(req, res){
+
+
+app.post('/users/makeOrder/:ime/:cijena', function(req, res){
   req.body._id = null;
   req.body.laptop_ime = req.params.ime;
   req.body.laptop_cijena = req.params.cijena;

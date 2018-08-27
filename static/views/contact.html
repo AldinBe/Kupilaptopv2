@@ -75,109 +75,44 @@
             </div>
         </div>
     </div>
-        <!-- <div class="main">
-            <div class="sec-banner bg0 p-t-80 p-b-50">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-                            <div class="block1 wrap-pic-w">
-                                <img src="assets/img/banner-03.jpg" alt="IMG-BANNER">
-        
-                                <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                                    <div class="block1-txt-child1 flex-col-l">
-                                        <span class="block1-name ltext-102 trans-04 p-b-8">
-                                            Women
+    <div class="section landing-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto">
+                        <h2 class="text-center">Javite nam se</h2>
+                        <form class="contact-form" ng-submit="addContact()">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Ime</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="nc-icon nc-single-02"></i>
                                         </span>
-        
-                                        <span class="block1-info stext-102 trans-04">
-                                            Spring 2018
+                                        <input type="text" class="form-control" placeholder="Ime" ng-model="contact.ime" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="nc-icon nc-email-85"></i>
                                         </span>
+                                        <input type="text" class="form-control" placeholder="Email" ng-model="contact.email" required>
                                     </div>
-        
-                                    <div class="block1-txt-child2 p-b-4 trans-05">
-                                        <div class="block1-link stext-101 cl0 trans-09">
-                                            Shop Now
-                                        </div>
-                                    </div>
-                                </a>
+                                </div>
                             </div>
-                        </div>
-        
-                        <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-                            <div class="block1 wrap-pic-w">
-                                <img src="assets/img/banner-03.jpg" alt="IMG-BANNER">
-        
-                                <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                                    <div class="block1-txt-child1 flex-col-l">
-                                        <span class="block1-name ltext-102 trans-04 p-b-8">
-                                            Men
-                                        </span>
-        
-                                        <span class="block1-info stext-102 trans-04">
-                                            Spring 2018
-                                        </span>
-                                    </div>
-        
-                                    <div class="block1-txt-child2 p-b-4 trans-05">
-                                        <div class="block1-link stext-101 cl0 trans-09">
-                                            Shop Now
-                                        </div>
-                                    </div>
-                                </a>
+                            <label>Poruka</label>
+                            <textarea class="form-control" rows="4" placeholder="..." ng-model="contact.msg" required></textarea>
+                            <div class="row">
+                                <div class="col-md-4 ml-auto mr-auto">
+                                    <button class="btn btn-danger btn-lg btn-fill" ng-click="add_contact()">Pošajite Poruku</button>
+                                </div>
                             </div>
-                        </div>
-        
-                        <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-                            <div class="block1 wrap-pic-w">
-                                <img src="assets/img/banner-03.jpg" alt="IMG-BANNER">
-        
-                                <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                                    <div class="block1-txt-child1 flex-col-l">
-                                        <span class="block1-name ltext-102 trans-04 p-b-8">
-                                            Accessories
-                                        </span>
-        
-                                        <span class="block1-info stext-102 trans-04">
-                                            New Trend
-                                        </span>
-                                    </div>
-        
-                                    <div class="block1-txt-child2 p-b-4 trans-05">
-                                        <div class="block1-link stext-101 cl0 trans-09">
-                                            Shop Now
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        
-        </div> -->
-
-        <section class="site-section" id="section-features">
-            <div class="container">
-              <div class="row site-section">
-                <div class="col-md-8">
-                  <p><img src="assets/img/dell.png" alt="" class="img-fluid" style="margin-top:-120px;"></p>
-                </div>
-                <div class="col-md-4">
-                  <h3 class="mb-3">Najbolji laptopi u ponudi</h3>
-                  <h4>DELL XPS 15 – 9550</h4><br>
-                  <p>DELL XPS 15 9550, Brzi i7 Quad Core Procesor sa Prelijepim 15.6" UHD Dispjelom, Odličan multimedijalni laptop po odličnoj cijeni , Dostupan ODMA</p>
-      
-                  <ul class="site-list">
-                    <li class="">- Intel Core i7-6700HQ 2.6GHz Processor</li>
-                    <li class="">- 8GB DDR4 2133Mhz RAM</li>
-                    <li class="">- 256GB PCIe SSD Storage Device</li>
-                    <li><a href="#!shop"><button type="button"class="btn btn-default btn-round">Laptopi</button></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </section>
-    </div>
+        </div>
     <footer class="footer">
         <div class="container">
             <div class="row">
